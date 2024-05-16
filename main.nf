@@ -41,112 +41,22 @@ params.Undocumented_Alleles.min_frac = 0.75
 
 // part 3
 
-params.make_igblast_ndm_second_alignment.ndm_chain = params.ndm_chain
-
-// Process Parameters for Second_Alignment_IgBlastn:
-params.Second_Alignment_IgBlastn.num_threads = "10"
-params.Second_Alignment_IgBlastn.ig_seqtype = "Ig"
-params.Second_Alignment_IgBlastn.outfmt = "MakeDb"
-params.Second_Alignment_IgBlastn.num_alignments_V = "10"
-params.Second_Alignment_IgBlastn.domain_system = "imgt"
-
-params.Second_Alignment_MakeDb.failed = "true"
-params.Second_Alignment_MakeDb.format = "airr"
-params.Second_Alignment_MakeDb.regions = "default"
-params.Second_Alignment_MakeDb.extended = "true"
-params.Second_Alignment_MakeDb.asisid = "false"
-params.Second_Alignment_MakeDb.asiscalls = "false"
-params.Second_Alignment_MakeDb.inferjunction = "false"
-params.Second_Alignment_MakeDb.partial = "false"
-params.Second_Alignment_MakeDb.name_alignment = "_Second_Alignment"
-
-// Process Parameters for Second_Alignment_Collapse_AIRRseq:
-//params.Second_Alignment_Collapse_AIRRseq.conscount_min = 2
-//params.Second_Alignment_Collapse_AIRRseq.n_max = 10
-//params.Second_Alignment_Collapse_AIRRseq.name_alignment = "_Second_Alignment"
-
-params.CreateGermlines.failed = "false"
-params.CreateGermlines.format = "airr"
-params.CreateGermlines.g = "dmask"
-params.CreateGermlines.cloned = "false"
-params.CreateGermlines.seq_field = ""
-params.CreateGermlines.v_field = ""
-params.CreateGermlines.d_field = ""
-params.CreateGermlines.j_field = ""
-params.CreateGermlines.clone_field = ""
-
-// part 5
-
-// Process Parameters for TIgGER_bayesian_genotype_Inference:
-params.TIgGER_bayesian_genotype_Inference_v_call.call = "v_call"
-params.TIgGER_bayesian_genotype_Inference_v_call.seq = "sequence_alignment"
-params.TIgGER_bayesian_genotype_Inference_v_call.find_unmutated = "false"
-params.TIgGER_bayesian_genotype_Inference_v_call.single_assignments = "false"
+params.make_igblast_ndm.ndm_chain = params.ndm_chain
 
 
-// Process Parameters for TIgGER_bayesian_genotype_Inference_d_call:
-params.TIgGER_bayesian_genotype_Inference_d_call.call = "d_call"
-params.TIgGER_bayesian_genotype_Inference_d_call.seq = "sequence_alignment"
-params.TIgGER_bayesian_genotype_Inference_d_call.find_unmutated = "false"
-params.TIgGER_bayesian_genotype_Inference_d_call.single_assignments = "true"
-params.TIgGER_bayesian_genotype_Inference_d_call.chain = params.chain
-
-// Process Parameters for TIgGER_bayesian_genotype_Inference_j_call:
-params.TIgGER_bayesian_genotype_Inference_j_call.call = "j_call"
-params.TIgGER_bayesian_genotype_Inference_j_call.seq = "sequence_alignment"
-params.TIgGER_bayesian_genotype_Inference_j_call.find_unmutated = "false"
-params.TIgGER_bayesian_genotype_Inference_j_call.single_assignments = "true"
-
-
-// part 6
-
-params.make_igblast_ndm_third_alignment.ndm_chain = params.ndm_chain
-
-// Process Parameters for Third_Alignment_IgBlastn:
-params.Third_Alignment_IgBlastn.num_threads = "10"
-params.Third_Alignment_IgBlastn.ig_seqtype = "Ig"
-params.Third_Alignment_IgBlastn.outfmt = "MakeDb"
-params.Third_Alignment_IgBlastn.num_alignments_V = "10"
-params.Third_Alignment_IgBlastn.domain_system = "imgt"
-
-params.Third_Alignment_MakeDb.failed = "true"
-params.Third_Alignment_MakeDb.format = "airr"
-params.Third_Alignment_MakeDb.regions = "default"
-params.Third_Alignment_MakeDb.extended = "true"
-params.Third_Alignment_MakeDb.asisid = "false"
-params.Third_Alignment_MakeDb.asiscalls = "false"
-params.Third_Alignment_MakeDb.inferjunction = "false"
-params.Third_Alignment_MakeDb.partial = "false"
-params.Third_Alignment_MakeDb.name_alignment = "_Finale"
-
-// Process Parameters for Third_Alignment_Collapse_AIRRseq:
-//params.Third_Alignment_Collapse_AIRRseq.conscount_min = 2
-//params.Third_Alignment_Collapse_AIRRseq.n_max = 10
-//params.Third_Alignment_Collapse_AIRRseq.name_alignment = "_Finale"
-
-
-
-// part 7
-
-// Process Parameters for ogrdbstats_report:
-params.ogrdbstats_report.chain = params.chain
 
 if (!params.v_germline_file){params.v_germline_file = ""} 
 if (!params.d_germline){params.d_germline = ""} 
 if (!params.j_germline){params.j_germline = ""} 
-if (!params.auxiliary_data){params.auxiliary_data = ""} 
 if (!params.airr_seq){params.airr_seq = ""} 
-if (!params.custom_internal_data){params.custom_internal_data = ""} 
 // Stage empty file to be used as an optional input where required
 ch_empty_file_1 = file("$baseDir/.emptyfiles/NO_FILE_1", hidden:true)
 ch_empty_file_2 = file("$baseDir/.emptyfiles/NO_FILE_2", hidden:true)
 
-Channel.fromPath(params.v_germline_file, type: 'any').map{ file -> tuple(file.baseName, file) }.into{g_2_germlineFastaFile_g_8;g_2_germlineFastaFile_g92_22;g_2_germlineFastaFile_g92_43;g_2_germlineFastaFile_g92_47;g_2_germlineFastaFile_g92_12}
+Channel.fromPath(params.v_germline_file, type: 'any').map{ file -> tuple(file.baseName, file) }.into{g_2_germlineFastaFile_g_8;g_2_germlineFastaFile_g_96;g_2_germlineFastaFile_g92_22;g_2_germlineFastaFile_g92_43;g_2_germlineFastaFile_g92_47;g_2_germlineFastaFile_g92_12}
 Channel.fromPath(params.d_germline, type: 'any').map{ file -> tuple(file.baseName, file) }.into{g_3_germlineFastaFile_g92_16;g_3_germlineFastaFile_g92_12}
-Channel.fromPath(params.j_germline, type: 'any').map{ file -> tuple(file.baseName, file) }.into{g_4_germlineFastaFile_g92_17;g_4_germlineFastaFile_g92_12}
-g_38_outputFileTxt_g92_9 = file(params.auxiliary_data, type: 'any')
+Channel.fromPath(params.j_germline, type: 'any').map{ file -> tuple(file.baseName, file) }.into{g_4_germlineFastaFile_g_97;g_4_germlineFastaFile_g92_17;g_4_germlineFastaFile_g92_12}
 Channel.fromPath(params.airr_seq, type: 'any').map{ file -> tuple(file.baseName, file) }.into{g_87_fastaFile_g92_9;g_87_fastaFile_g92_12}
-g_93_outputFileTxt_g92_9 = file(params.custom_internal_data, type: 'any')
 
 
 process First_Alignment_D_MakeBlastDb {
@@ -224,6 +134,51 @@ if(germlineFile.getName().endsWith("fasta")){
 }
 
 
+process make_igblast_ndm {
+
+input:
+ set val(db_name), file(germlineFile) from g_2_germlineFastaFile_g_96
+
+output:
+ file ndm_file  into g_96_outputFileTxt0_g92_9
+
+script:
+
+ndm_chain = params.make_igblast_ndm.ndm_chain
+
+chains = [IGH: 'VH', IGK: 'VK', IGL: 'VL', TRA: 'VA', TRB: 'VB', TRD: 'VD', TRG: 'VG']
+
+chain = chains[ndm_chain]
+
+ndm_file = db_name+".ndm"
+
+"""
+make_igblast_ndm ${germlineFile} ${chain} ${ndm_file}
+"""
+
+}
+
+
+process make_igblast_annotate_j {
+
+input:
+ set val(db_name), file(germlineFile) from g_4_germlineFastaFile_g_97
+
+output:
+ file aux_file  into g_97_outputFileTxt0_g92_9
+
+script:
+
+
+
+aux_file = "J.aux"
+
+"""
+annotate_j ${germlineFile} ${aux_file}
+"""
+}
+
+
 process First_Alignment_IgBlastn {
 
 input:
@@ -231,8 +186,8 @@ input:
  file db_v from g92_22_germlineDb0_g92_9
  file db_d from g92_16_germlineDb0_g92_9
  file db_j from g92_17_germlineDb0_g92_9
- file auxiliary_data from g_38_outputFileTxt_g92_9
- file custom_internal_data from g_93_outputFileTxt_g92_9
+ file auxiliary_data from g_97_outputFileTxt0_g92_9
+ file custom_internal_data from g_96_outputFileTxt0_g92_9
 
 output:
  set val(name), file("${outfile}") optional true  into g92_9_igblastOut0_g92_12
